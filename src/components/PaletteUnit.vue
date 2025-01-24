@@ -33,7 +33,7 @@ const p = computed(() => {
         }"><VueUiIcon name="palette" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">palette</code></h2>
         <div class="flex flew-row flex-wrap justify-center gap-4">
             <div v-for="feeling in Object.keys(p.palette)">
-                <div class="flex flex-col gap-1 w-[200px]">
+                <div class="flex flex-col gap-1 w-[100px] sm:w-[200px]">
                 <div class="flex flex-col">
                     <code style="font-weight: bold">{{ feeling }}</code>
                     <code>{{ p.palette[feeling] }}</code>
@@ -56,7 +56,7 @@ const p = computed(() => {
         }"><VueUiIcon name="chartWaffle" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">hues</code></h2>
         <div class="flex flew-row flex-wrap justify-center gap-4">
             <div v-for="feeling in Object.keys(p.palette)">
-                <div class="flex flex-col w-[200px]">
+                <div class="flex flex-col w-[100px] sm:w-[200px]">
                     <div class="flex flex-col">
                         <code style="font-weight: bold">{{ feeling }}</code>
                     </div>

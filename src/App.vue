@@ -41,7 +41,7 @@ function changeTheme() {
       <div class="text-2xl flex flex-row place-items-center gap-2">
         <VueUiIcon name="moodLaughing":stroke="store.mainColor" :size="20"/>
         <span style="font-weight: bold">
-          color-bridge
+          Color Bridge
         </span>
         <span class="text-xs">v{{ pack.dependencies["color-bridge"].replace('^', '') }}</span>
       </div>
