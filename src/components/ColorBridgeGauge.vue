@@ -15,7 +15,7 @@ function makeSeries() {
   let arr = [];
   let initColor = store.mainColor;
 
-  for(let i = 0; i < 85; i += 1) {
+  for(let i = 0; i < 100; i += 1) {
     arr.push({
       from: i,
       to: i + 1,
@@ -23,10 +23,10 @@ function makeSeries() {
     })
   }
 
-  return arr;
+  return arr.reverse();
 }
 
-const gaugeValue = ref(55);
+const gaugeValue = ref(66);
 
 const dataset = computed(() => {
   return {
@@ -52,65 +52,33 @@ const config = computed(() => {
           track: { size: 5, useGradient: true, gradientIntensity: 20 },
           markers: {
             show: false,
-            color: "#2D353C",
-            bold: true,
-            fontSizeRatio: 1,
-            offsetY: 0,
-            roundingValue: 0,
-            formatter: null,
-            prefix: "",
-            suffix: "",
           },
           segmentSeparators: {
             show: false,
-            offsetOut: 0,
-            offsetIn: 0,
-            stroke: "#2D353C",
-            strokeWidth: 2,
           },
           segmentNames: {
             show: false,
-            curved: true,
-            offsetRatio: 1.1,
-            fontSize: 16,
-            useSerieColor: true,
-            bold: false,
           },
           pointer: {
             type: "pointy",
             size: 1.2,
-            stroke: isDarkMode.value ? '#1A1A1A' : '#FFFFFF',
+            stroke: '#1A1A1A',
             strokeWidth: 12,
             useRatingColor: false,
             color: "#2A2A2A",
             circle: {
-              radius: 10,
+              radius: 12,
               stroke: "#1A1A1A",
               strokeWidth: 2,
-              color: "#FFFFFF",
+              color: isDarkMode.value ? '#CCCCCC' : "#F3F4F6",
             },
           },
         },
         legend: {
           show: false,
-          fontSize: 48,
-          prefix: "",
-          suffix: "",
-          roundingValue: 1,
-          showPlusSymbol: true,
-          useRatingColor: true,
-          color: "#2D353C",
-          formatter: null,
         },
         title: {
           text: "",
-          color: "#2D353C",
-          fontSize: 20,
-          bold: true,
-          textAlign: "center",
-          paddingLeft: 0,
-          paddingRight: 0,
-          subtitle: { color: "#A1A1A1", text: "", fontSize: 16, bold: false },
         },
       },
     },

@@ -28,7 +28,9 @@ const p = computed(() => {
 
 <template>
     <div class="flex flex-col">
-        <h2 class="flex flex-row px-2 gap-2 place-items-center"><VueUiIcon name="palette" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">palette</code></h2>
+        <h2 class="flex flex-row px-2 gap-2 place-items-center" :style="{
+            background: `linear-gradient(to right, ${store.mainColor+20}, transparent)`
+        }"><VueUiIcon name="palette" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">palette</code></h2>
         <div class="flex flew-row flex-wrap justify-center gap-4">
             <div v-for="feeling in Object.keys(p.palette)">
                 <div class="flex flex-col gap-1 w-[200px]">
@@ -49,7 +51,9 @@ const p = computed(() => {
     </div>
 
     <div class="flex flex-col">
-        <h2 class="flex flex-row px-2 gap-2 place-items-center"><VueUiIcon name="chartWaffle" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">hues</code></h2>
+        <h2 class="flex flex-row px-2 gap-2 place-items-center" :style="{
+            background: `linear-gradient(to right, ${store.mainColor+20}, transparent)`
+        }"><VueUiIcon name="chartWaffle" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">hues</code></h2>
         <div class="flex flew-row flex-wrap justify-center gap-4">
             <div v-for="feeling in Object.keys(p.palette)">
                 <div class="flex flex-col w-[200px]">

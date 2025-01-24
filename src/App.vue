@@ -49,7 +49,7 @@ function changeTheme() {
         </button>
         <button class="cursor-pointer">
           <a href="https://github.com/graphieros/color-bridge" target="_blank">
-            <BrandGithubFilledIcon/>
+            <BrandGithubFilledIcon :style="{ color: isDarkMode ? store.mainColor : '#1A1A1A'}"/>
           </a>
         </button>
       </div>

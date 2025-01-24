@@ -10,7 +10,7 @@ export const useMainStore = defineStore('main', () => {
         isCopy.value = true;
         setTimeout(() => {
             isCopy.value = false;
-        }, 1000);
+        }, 600);
     }
 
     return {
