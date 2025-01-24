@@ -4,6 +4,7 @@ import { RouterView } from 'vue-router';
 import { useMainStore } from './stores/main';
 import { SunIcon, MoonIcon, BrandGithubFilledIcon } from "vue-tabler-icons";
 import { VueUiIcon } from "vue-data-ui";
+import pack from "../package.json"
 
 const store = useMainStore();
 
@@ -39,8 +40,10 @@ function changeTheme() {
     <div class="w-full max-w-[1200px] flex flew-row place-items-center justify-between">
       <div class="text-2xl flex flex-row place-items-center gap-2">
         <VueUiIcon name="moodLaughing":stroke="store.mainColor" :size="20"/>
-        color-bridge
-        <span class="text-xs">v1.0.0</span>
+        <span style="font-weight: bold">
+          color-bridge
+        </span>
+        <span class="text-xs">v{{ pack.dependencies["color-bridge"].replace('^', '') }}</span>
       </div>
       <div class="flex flex-row gap-6 place-items-center">
         <button @click="changeTheme" class="cursor-pointer">

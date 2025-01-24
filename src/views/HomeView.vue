@@ -8,6 +8,7 @@ import PaletteUnit from "../components/PaletteUnit.vue";
 import colorBridge from "color-bridge";
 import { watch } from "vue";
 import ColorBridgeGauge from "../components/ColorBridgeGauge.vue";
+import { VueUiIcon } from "vue-data-ui";
 
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
@@ -105,6 +106,13 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
       <PaletteUnit :culture="selectedCulture" @click="(color) => copyToClipboard(color, true)"/>
     </div>
   </main>
+  <footer class="w-full pb-12 flex flex-col">
+    <div class="flex flex-row gap-2 place-items-center justify-center">
+      <VueUiIcon name="copyLeft" :stroke="isDarkMode ? selectedColor : '#1A1A1A'"/>
+      <span><span style="font-weight:bold">color-bridge</span> {{ new Date().getFullYear() }}</span>
+    </div>
+    <div class="flex flex-row justify-center gap-1">All charts are composed with <a href="https://vue-data-ui.graphieros.com/" class="underline" target="_blank" :style="{ color: isDarkMode ? selectedColor : '#1A1A1A' }">Vue Data UI</a></div>
+  </footer>
   <ConfirmCopy />
 </template>
 
@@ -113,6 +121,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 .select {
 	position: relative;
 	width: 350px;
+  color: #8A8A8A;
 }
 
 .select-text {
