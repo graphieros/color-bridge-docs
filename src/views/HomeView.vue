@@ -68,7 +68,8 @@ const p = computed(() => {
 
 watch(() => selectedCulture.value, (c) => {
   store.mainColor = p.value.palette.success;
-})
+  store.mainPalette = p.value
+}, { immediate: true})
 
 const selectedColor = computed(() => store.mainColor);
 const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
@@ -76,6 +77,18 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 </script>
 
 <template>
+  <div 
+    v-if="store.mainPalette"
+    class="invisible sm:visible fixed -top-0] left-0"
+    :style="{
+      border: `0px solid ${store.mainPalette.palette.neutrality}`,
+      height: '500px',
+      width: '500px',
+      background: `radial-gradient(at top left,${store.mainPalette.palette.happiness}, ${store.mainPalette.palette.success}, transparent, transparent, transparent, transparent)`,
+      opacity: 0.1
+    }"
+  />
+
   <main class="flex w-full justify-center py-18">
     <div class="max-w-[1200px] flex flex-col place-items-center gap-12 px-5">
 
@@ -140,7 +153,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 
       <button class="cursor-pointer relative pr-8 w-fit" @click="copyToClipboard('npm i color-bridge', true)">
         <CopyIcon class="absolute top-1/2 -translate-y-1/2 right-0" :style="{ color: selectedColor }"/>
-        <code>npm i color-bridge</code>
+        <code class="text-3xl">npm i color-bridge</code>
       </button>
 
       <div class="flex flex-col gap-1 justify-center place-items-center">
@@ -173,11 +186,17 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 					<label for="culture" class="select-label" :data-dark="isDarkMode">Select a culture</label>
 				</div>
       </div>
-
-      
     </div>
   </main>
-  <footer class="w-full pb-12 flex flex-col">
+
+  <div :style="{
+      background: `linear-gradient(to right, ${p.palette.sadness}, ${p.palette.error}, ${p.palette.neutrality}, ${p.palette.happiness}, ${p.palette.success})`,
+      margin: '0 auto'
+    }"
+    class="w-full h-1 rounded-full max-w-[1200px]"
+  />
+
+  <footer class="w-full py-12 flex flex-col">
     <div class="flex flex-row gap-2 place-items-center justify-center">
       <VueUiIcon name="copyLeft" :stroke="isDarkMode ? selectedColor : '#1A1A1A'"/>
       <span><span style="font-weight:bold">color-bridge</span> {{ new Date().getFullYear() }}</span>

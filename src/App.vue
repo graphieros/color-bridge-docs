@@ -39,11 +39,11 @@ function changeTheme() {
   <header class="sticky top-0 left-0 py-2 card w-full flex justify-center shadow px-5 z-100">
     <div class="w-full max-w-[1200px] flex flew-row place-items-center justify-between">
       <div class="text-2xl flex flex-row place-items-center gap-2">
-        <VueUiIcon name="moodLaughing":stroke="store.mainColor" :size="20"/>
+        <VueUiIcon name="moodLaughing":stroke="store.mainColor" :size="24"/>
         <span style="font-weight: bold">
           Color Bridge
         </span>
-        <span class="text-xs">v{{ pack.dependencies["color-bridge"].replace('^', '') }}</span>
+        <code class="text-xs">v{{ pack.dependencies["color-bridge"].replace('^', '') }}</code>
       </div>
       <div class="flex flex-row gap-6 place-items-center">
         <button @click="changeTheme" class="cursor-pointer">
@@ -57,6 +57,9 @@ function changeTheme() {
         </button>
       </div>
     </div>
+    <div v-if="store.mainPalette" class="fixed top-[46px] h-0.5 w-full left-0" :style="{
+      background: `linear-gradient(to right, ${store.mainPalette.palette.sadness}, ${store.mainPalette.palette.error}, ${store.mainPalette.palette.neutrality}, ${store.mainPalette.palette.happiness}, ${store.mainPalette.palette.success})`,
+    }"/>
   </header>
 
   <RouterView />

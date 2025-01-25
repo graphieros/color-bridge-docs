@@ -4,7 +4,8 @@ import { defineStore } from 'pinia'
 export const useMainStore = defineStore('main', () => {
     const isDarkMode = ref(true);
     const isCopy = ref(false);
-    const mainColor = ref('#FF3000')
+    const mainColor = ref('#FF3000');
+    const mainPalette = ref({palette:{ sadness:'', error: '', neutrality: '', happiness: '', success: ''}})
 
     function copy() {
         isCopy.value = true;
@@ -17,6 +18,7 @@ export const useMainStore = defineStore('main', () => {
         isDarkMode,
         isCopy,
         copy,
-        mainColor
+        mainColor,
+        mainPalette
     }
 })
