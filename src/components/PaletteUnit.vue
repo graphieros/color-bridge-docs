@@ -17,11 +17,12 @@ const props = defineProps({
 })
 
 const p = computed(() => {
-    const { palette:p, hues, themes } = colorBridge({ culture: props.culture });
+    const { palette:p, hues, themes, textColorForBackground } = colorBridge({ culture: props.culture });
     return {
         palette:p,
         hues,
-        themes
+        themes,
+        textColorForBackground
     }
 })
 
@@ -99,11 +100,26 @@ const p = computed(() => {
                         {{ theme }}
                     </div>
                     
-                    <div :style="{ background: p.themes[theme].secondary }" class="absolute top-2 right-3 rounded-full h-[20px] w-[20px] shadow"></div>
-                    <div :style="{ background: p.themes[theme].tertiary }" class="absolute top-[114px] left-[24px] h-[24px] w-[80px] shadow-md rounded-full"/>
+                    <div :style="{ background: p.themes[theme].secondary }" class="absolute top-2 right-3 rounded-full h-[20px] w-[20px] shadow flex flex-row place-items-center justify-center">
+                        <VueUiIcon name="starFill" :stroke="p.textColorForBackground(p.themes[theme].secondary)" :size="10"/>
+                    </div>
+                    <div :style="{ background: p.themes[theme].primary, color: p.textColorForBackground(p.themes[theme].primary) }" class="absolute top-[114px] left-[24px] h-[24px] w-[80px] shadow-md rounded-full text-center">
+                        Action!
+                    </div>
                     <div :style="{ color: p.themes[theme].textColor, fontWeight: 'bold' }" class="absolute top-14 left-[24px] text-2xl leading-6">
                         This is <span :style="{ color: p.themes[theme].primary, fontWeight: 'bold'}">the Hero</span> section
                     </div>
+                    <svg class="absolute bottom-2 right-0 h-[50px] w-[90px] bg-transparent rotate-5" viewBox="0 0 100 60" :style="{
+                        filter: `drop-shadow(0 1px 1px ${p.themes[theme].primary})`
+                    }">
+                        <path 
+                            d="M 56 38 A 1 1 0 0 0 67 36 A 1 1 0 0 0 43 40 A 1 1 0 0 0 84 35 A 1 1 0 0 0 9 43"
+                            fill="none"
+                            :stroke="p.themes[theme].tertiary"
+                            stroke-linecap="round"
+                            stroke-width="1.6"
+                        />
+                    </svg>
                 </div>
             </div>
         </div>
