@@ -35,12 +35,13 @@ function copyToClipboard(conf, justText=false) {
 const installationCode = computed(() => {
   return `import colorBridge from "color-bridge";
 const { 
-  palette, 
   hues,
   themes,
+  palette, 
   createHues,
   darkenHexColor,
-  lightenHexColor
+  lightenHexColor,
+  textColorForBackground
 } = colorBridge({culture: '${selectedCulture.value}'});
 `
 })
