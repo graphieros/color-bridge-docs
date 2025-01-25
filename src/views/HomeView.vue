@@ -60,10 +60,11 @@ const cultures = ref([
 ])
 
 const p = computed(() => {
-    const { palette:p, hues } = colorBridge({ culture: selectedCulture.value });
+    const { palette:p, hues, textColorForBackground } = colorBridge({ culture: selectedCulture.value });
     return {
         palette:p,
-        hues
+        hues,
+        textColorForBackground
     }
 })
 
@@ -104,7 +105,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
           <div class="flex flex-col justify-center place-items-center">
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.sadness[6]}, ${p.hues.sadness[12]})` }">
               <VueUiIcon 
-                name="moodSad" stroke="#FFFFFF" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                name="moodSad" :stroke="p.textColorForBackground(p.palette.sadness)" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 :style="{
                   filter: 'drop-shadow(0 1px 1px #6A6A6A)'
                 }"
@@ -116,7 +117,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 
           <div class="flex flex-col justify-center place-items-center">
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.error[6]}, ${p.hues.error[12]})` }">
-              <VueUiIcon name="moodFlat" stroke="#FFFFFF" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+              <VueUiIcon name="moodFlat" :stroke="p.textColorForBackground(p.palette.error)" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
                   filter: 'drop-shadow(0 1px 1px #6A6A6A)'
                 }"/>
             </div>
@@ -127,7 +128,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
           <div class="flex flex-col justify-center place-items-center">
 
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.neutrality[6]}, ${p.hues.neutrality[12]})` }">
-              <VueUiIcon name="moodNeutral" stroke="#FFFFFF" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+              <VueUiIcon name="moodNeutral" :stroke="p.textColorForBackground(p.palette.neutrality)" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
                   filter: 'drop-shadow(0 1px 1px #6A6A6A)'
                 }"/>
             </div>
@@ -137,7 +138,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 
           <div class="flex flex-col justify-center place-items-center">
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.happiness[6]}, ${p.hues.happiness[12]})` }">
-              <VueUiIcon name="smiley" stroke="#FFFFFF" :size="50" :stroke-width="0.5" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+              <VueUiIcon name="smiley" :stroke="p.textColorForBackground(p.palette.happiness)" :size="50" :stroke-width="0.5" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
                   filter: 'drop-shadow(0 1px 1px #6A6A6A)'
                 }"/>
             </div>
@@ -147,7 +148,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 
           <div class="flex flex-col justify-center place-items-center">
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.success[6]}, ${p.hues.success[12]})` }">
-              <VueUiIcon name="moodHappy" :stroke="'#FFFFFF'" :size="50" :stroke-width="0.5" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+              <VueUiIcon name="moodHappy" :stroke="p.textColorForBackground(p.palette.success)" :size="50" :stroke-width="0.5" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
                   filter: 'drop-shadow(0 1px 1px #6A6A6A)'
                 }"/>
             </div>
