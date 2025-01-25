@@ -101,50 +101,54 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 
       <div class="flex flex-row gap-4 justify-center pt-4">
           <div class="flex flex-col justify-center place-items-center">
-            <div class="h-[12px] w-[12px] rounded-full shadow border border-[#1A1A1A] dark:border-[#3A3A3A]" :style="{ background: p.palette.sadness }"/>
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.sadness[6]}, ${p.hues.sadness[12]})` }">
-              <VueUiIcon name="moodSad" :stroke="isDarkMode ? '#3A3A3A' : '#CCCCCC'" :size="54" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-              <VueUiIcon name="moodSad" stroke="#FFFFFF" :stroke-width="0.8" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+              <VueUiIcon 
+                name="moodSad" stroke="#FFFFFF" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                :style="{
+                  filter: 'drop-shadow(0 1px 1px #6A6A6A)'
+                }"
+              />
             </div>
             <code class="text-xs">sadness</code>
             <code>{{ p.palette.sadness }}</code>
           </div>
 
           <div class="flex flex-col justify-center place-items-center">
-            <div class="h-[12px] w-[12px] rounded-full shadow border border-[#1A1A1A] dark:border-[#3A3A3A]" :style="{ background: p.palette.error }"/>
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.error[6]}, ${p.hues.error[12]})` }">
-              <VueUiIcon name="moodFlat" :stroke="isDarkMode ? '#3A3A3A' : '#CCCCCC'" :size="54" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-              <VueUiIcon name="moodFlat" stroke="#FFFFFF" :stroke-width="0.8" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+              <VueUiIcon name="moodFlat" stroke="#FFFFFF" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+                  filter: 'drop-shadow(0 1px 1px #6A6A6A)'
+                }"/>
             </div>
             <code class="text-xs">error</code>
             <code>{{ p.palette.error }}</code>
           </div>
 
           <div class="flex flex-col justify-center place-items-center">
-            <div class="h-[12px] w-[12px] rounded-full shadow border border-[#1A1A1A] dark:border-[#3A3A3A]" :style="{ background: p.palette.neutrality }"/>
+
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.neutrality[6]}, ${p.hues.neutrality[12]})` }">
-              <VueUiIcon name="moodNeutral" :stroke="isDarkMode ? '#3A3A3A' : '#CCCCCC'" :size="54" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-              <VueUiIcon name="moodNeutral" stroke="#FFFFFF" :stroke-width="0.8" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+              <VueUiIcon name="moodNeutral" stroke="#FFFFFF" :stroke-width="0.5" :size="50" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+                  filter: 'drop-shadow(0 1px 1px #6A6A6A)'
+                }"/>
             </div>
             <code class="text-xs">neutrality</code>
             <code>{{ p.palette.neutrality }}</code>
           </div>
 
           <div class="flex flex-col justify-center place-items-center">
-            <div class="h-[12px] w-[12px] rounded-full shadow border border-[#1A1A1A] dark:border-[#3A3A3A]" :style="{ background: p.palette.happiness }"/>
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.happiness[6]}, ${p.hues.happiness[12]})` }">
-              <VueUiIcon name="smiley" :stroke="isDarkMode ? '#3A3A3A' : '#CCCCCC'" :size="54" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-              <VueUiIcon name="smiley" stroke="#FFFFFF" :size="50" :stroke-width="0.8" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+              <VueUiIcon name="smiley" stroke="#FFFFFF" :size="50" :stroke-width="0.5" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+                  filter: 'drop-shadow(0 1px 1px #6A6A6A)'
+                }"/>
             </div>
             <code class="text-xs">happiness</code>
             <code>{{ p.palette.happiness }}</code>
           </div>
 
           <div class="flex flex-col justify-center place-items-center">
-            <div class="h-[12px] w-[12px] rounded-full shadow border border-[#1A1A1A] dark:border-[#3A3A3A]" :style="{ background: p.palette.success }"/>
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.success[6]}, ${p.hues.success[12]})` }">
-              <VueUiIcon name="moodHappy" :stroke="isDarkMode ? '#3A3A3A' : '#CCCCCC'" :size="54" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-              <VueUiIcon name="moodHappy" :stroke="'#FFFFFF'" :size="50" :stroke-width="0.8" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+              <VueUiIcon name="moodHappy" :stroke="'#FFFFFF'" :size="50" :stroke-width="0.5" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" :style="{
+                  filter: 'drop-shadow(0 1px 1px #6A6A6A)'
+                }"/>
             </div>
             <code class="text-xs">success</code>
             <code>{{ p.palette.success }}</code>
