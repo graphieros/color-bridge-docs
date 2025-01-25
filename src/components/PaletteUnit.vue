@@ -17,10 +17,11 @@ const props = defineProps({
 })
 
 const p = computed(() => {
-    const { palette:p, hues } = colorBridge({ culture: props.culture });
+    const { palette:p, hues, themes } = colorBridge({ culture: props.culture });
     return {
         palette:p,
-        hues
+        hues,
+        themes
     }
 })
 
@@ -72,6 +73,37 @@ const p = computed(() => {
                                 height: '20px',
                             }"
                         />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col">
+        <h2 class="flex flex-row px-2 gap-2 place-items-center" :style="{
+            background: `linear-gradient(to right, ${store.mainColor+20}, transparent)`
+        }"><VueUiIcon name="chartWaffle" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">themes</code></h2>
+        <div class="flex flex-col gap-4">
+            <div v-for="theme in Object.keys(p.themes)" class="grid grid-cols-2 gap-2 sm:gap-8">
+                <div class="text-xs sm:text-sm">
+                    <h3 class="pb-5"><code>{{ theme }}</code></h3>
+                    <div class="flex flex-row gap-2 place-items-center" v-for="key in Object.keys(p.themes[theme])">
+                        <button class="h-[20px] w-[40px] outline outline-gray-300 cursor-pointer" :style="{ background: p.themes[theme][key] }" @click="emit('click', p.themes[theme][key])"/>
+                        <code class="text-[9px] sm:text-sm">{{ p.themes[theme][key] }}</code>
+                        <code class="text-[9px] sm:text-sm">{{ key }}</code>
+                    </div>
+                </div>
+
+                <div :style="{ background: p.themes[theme].backgroundColor }" class="relative shadow h-[150px] rounded">
+                    <div :style="{ color: p.themes[theme].textColor }" class="text-2xl pl-[12px]">
+                        {{ theme }}
+                    </div>
+                    <div :style="{ background: p.themes[theme].primary, margin: '0 12px' }" class="h-[24px]"/>
+                    
+                    <div :style="{ background: p.themes[theme].secondary }" class="absolute top-2 right-3 rounded-full h-[20px] w-[20px]"></div>
+                    <div :style="{ background: p.themes[theme].tertiary }" class="absolute top-16 left-3 h-[64px] w-[44px] shadow-md"/>
+                    <div :style="{ color: p.themes[theme].textColor }" class="absolute top-16 left-[64px] text-xs">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta vero doloremque voluptatem nobis.
                     </div>
                 </div>
             </div>

@@ -34,7 +34,14 @@ function copyToClipboard(conf, justText=false) {
 
 const installationCode = computed(() => {
   return `import colorBridge from "color-bridge";
-const { palette, hues } = colorBridge({culture: '${selectedCulture.value}'});
+const { 
+  palette, 
+  hues,
+  themes,
+  createHues,
+  darkenHexColor,
+  lightenHexColor
+} = colorBridge({culture: '${selectedCulture.value}'});
 `
 })
 
@@ -70,39 +77,16 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 
 <template>
   <main class="flex w-full justify-center py-18">
-    <div class="max-w-[1200px] flex flex-col place-items-center gap-20 px-5">
+    <div class="max-w-[1200px] flex flex-col place-items-center gap-12 px-5">
 
       <div class="flex flex-col sm:flex-row gap-4 place-items-center justify-between">
         <h1 class="text-4xl text-center sm:text-left max-w-[30ch]">
           Generate region-specific <span :style="{ color: p.palette.success }">color palettes</span> based on cultural contexts
         </h1>
-
         <ColorBridgeGauge />
       </div>
 
-      <button class="cursor-pointer relative pr-8 w-fit" @click="copyToClipboard('npm i color-bridge', true)">
-        <CopyIcon class="absolute top-1/2 -translate-y-1/2 right-0" :style="{ color: selectedColor }"/>
-        <code>npm i color-bridge</code>
-      </button>
-
-      <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]">
-        <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(installationCode, true)">
-          <CopyIcon :style="{ color: selectedColor }"/>
-        </button>
-        <CodeParser :content="installationCode" language="javascript"/>
-      </div>
-
-      <div class="flex flex-col gap-1 justify-center place-items-center">
-        <div class="select">
-					<select class="select-text" v-model="selectedCulture" id="culture" :style="{background: `${p.palette.success}20`}">
-            <option v-for="culture in cultures">{{ culture }}</option>
-					</select>
-					<span class="select-highlight"></span>
-					<span class="select-bar"></span>
-					<label for="culture" class="select-label" :data-dark="isDarkMode">Select a culture</label>
-				</div>
-
-        <div class="flex flex-row gap-4 justify-center pt-6">
+      <div class="flex flex-row gap-4 justify-center pt-4">
           <div class="flex flex-col justify-center place-items-center">
             <div class="h-[12px] w-[12px] rounded-full shadow border border-[#1A1A1A] dark:border-[#3A3A3A]" :style="{ background: p.palette.sadness }"/>
             <div class="relative h-[54px] w-[54px] rounded-full" :style="{ background: `radial-gradient(${p.hues.sadness[6]}, ${p.hues.sadness[12]})` }">
@@ -152,10 +136,45 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
             <code class="text-xs">success</code>
             <code>{{ p.palette.success }}</code>
           </div>
-        </div>
       </div>
 
+      <button class="cursor-pointer relative pr-8 w-fit" @click="copyToClipboard('npm i color-bridge', true)">
+        <CopyIcon class="absolute top-1/2 -translate-y-1/2 right-0" :style="{ color: selectedColor }"/>
+        <code>npm i color-bridge</code>
+      </button>
+
+      <div class="flex flex-col gap-1 justify-center place-items-center">
+        <div class="select">
+					<select class="select-text" v-model="selectedCulture" id="culture" :style="{background: `${p.palette.success}20`}">
+            <option v-for="culture in cultures">{{ culture }}</option>
+					</select>
+					<span class="select-highlight"></span>
+					<span class="select-bar"></span>
+					<label for="culture" class="select-label" :data-dark="isDarkMode">Select a culture</label>
+				</div>
+      </div>
+
+      <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]">
+        <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(installationCode, true)">
+          <CopyIcon :style="{ color: selectedColor }"/>
+        </button>
+        <CodeParser :content="installationCode" language="javascript"/>
+      </div>
+      
       <PaletteUnit :culture="selectedCulture" @click="(color) => copyToClipboard(color, true)"/>
+
+      <div class="flex flex-col gap-1 justify-center place-items-center">
+        <div class="select">
+					<select class="select-text" v-model="selectedCulture" id="culture" :style="{background: `${p.palette.success}20`}">
+            <option v-for="culture in cultures">{{ culture }}</option>
+					</select>
+					<span class="select-highlight"></span>
+					<span class="select-bar"></span>
+					<label for="culture" class="select-label" :data-dark="isDarkMode">Select a culture</label>
+				</div>
+      </div>
+
+      
     </div>
   </main>
   <footer class="w-full pb-12 flex flex-col">
