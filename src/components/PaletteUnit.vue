@@ -82,7 +82,7 @@ const p = computed(() => {
     <div class="flex flex-col">
         <h2 class="flex flex-row px-2 gap-2 place-items-center" :style="{
             background: `linear-gradient(to right, ${store.mainColor+20}, transparent)`
-        }"><VueUiIcon name="chartWaffle" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">themes</code></h2>
+        }"><VueUiIcon name="legend" :stroke="isDarkMode ? p.palette.success : '#1A1A1A'"/><code class="text-xl">themes</code></h2>
         <div class="flex flex-col gap-4">
             <div v-for="theme in Object.keys(p.themes)" class="grid grid-cols-2 gap-2 sm:gap-8">
                 <div class="text-xs sm:text-sm">
@@ -95,15 +95,14 @@ const p = computed(() => {
                 </div>
 
                 <div :style="{ background: p.themes[theme].backgroundColor }" class="relative shadow h-[150px] rounded">
-                    <div :style="{ color: p.themes[theme].textColor }" class="text-2xl pl-[12px]">
+                    <div :style="{ color: p.themes[theme].textColor, borderBottom: `2px solid ${p.themes[theme].tertiary}` }" class="pl-[12px] py-2">
                         {{ theme }}
                     </div>
-                    <div :style="{ background: p.themes[theme].primary, margin: '0 12px' }" class="h-[24px]"/>
                     
-                    <div :style="{ background: p.themes[theme].secondary }" class="absolute top-2 right-3 rounded-full h-[20px] w-[20px]"></div>
-                    <div :style="{ background: p.themes[theme].tertiary }" class="absolute top-16 left-3 h-[64px] w-[44px] shadow-md"/>
-                    <div :style="{ color: p.themes[theme].textColor }" class="absolute top-16 left-[64px] text-xs">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta vero doloremque voluptatem nobis.
+                    <div :style="{ background: p.themes[theme].secondary }" class="absolute top-2 right-3 rounded-full h-[20px] w-[20px] shadow"></div>
+                    <div :style="{ background: p.themes[theme].tertiary }" class="absolute top-[114px] left-[24px] h-[24px] w-[80px] shadow-md rounded-full"/>
+                    <div :style="{ color: p.themes[theme].textColor, fontWeight: 'bold' }" class="absolute top-14 left-[24px] text-2xl leading-6">
+                        This is <span :style="{ color: p.themes[theme].primary, fontWeight: 'bold'}">the Hero</span> section
                     </div>
                 </div>
             </div>
