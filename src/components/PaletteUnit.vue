@@ -9,6 +9,10 @@ const emit = defineEmits(['click'])
 
 const isDarkMode = computed(() => store.isDarkMode);
 
+const { bridge, utils } = colorBridge();
+
+const { textColorForBackground } = utils();
+
 const props = defineProps({
     culture: {
         type: String,
@@ -17,12 +21,11 @@ const props = defineProps({
 })
 
 const p = computed(() => {
-    const { palette:p, hues, themes, textColorForBackground } = colorBridge({ culture: props.culture });
+    const { palette:p, hues, themes,} = bridge({ culture: props.culture });
     return {
         palette:p,
         hues,
-        themes,
-        textColorForBackground
+        themes
     }
 })
 
@@ -101,9 +104,9 @@ const p = computed(() => {
                     </div>
                     
                     <div :style="{ background: p.themes[theme].secondary }" class="absolute top-2 right-3 rounded-full h-[20px] w-[20px] shadow flex flex-row place-items-center justify-center">
-                        <VueUiIcon name="starFill" :stroke="p.textColorForBackground(p.themes[theme].secondary)" :size="10"/>
+                        <VueUiIcon name="starFill" :stroke="textColorForBackground(p.themes[theme].secondary)" :size="10"/>
                     </div>
-                    <div :style="{ background: p.themes[theme].primary, color: p.textColorForBackground(p.themes[theme].primary) }" class="absolute top-[114px] left-[24px] h-[24px] w-[80px] shadow-md rounded-full text-center">
+                    <div :style="{ background: p.themes[theme].primary, color: textColorForBackground(p.themes[theme].primary) }" class="absolute top-[114px] left-[24px] h-[24px] w-[80px] shadow-md rounded-full text-center">
                         Action!
                     </div>
                     <div :style="{ color: p.themes[theme].textColor, fontWeight: 'bold' }" class="absolute top-14 left-[24px] text-2xl leading-6">
