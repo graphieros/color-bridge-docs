@@ -10,6 +10,7 @@ import { watch } from "vue";
 import ColorBridgeGauge from "../components/ColorBridgeGauge.vue";
 import { VueUiIcon } from "vue-data-ui";
 import UtilityFunctions from "@/components/UtilityFunctions.vue";
+import ThemeDialog from "@/components/ThemeDialog.vue";
 
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
@@ -79,6 +80,8 @@ watch(() => selectedCulture.value, (c) => {
 
 const selectedColor = computed(() => store.mainColor);
 const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
+
+const dialog = ref(null);
 
 </script>
 
@@ -187,6 +190,16 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
       
       <PaletteUnit :culture="selectedCulture" @click="(color) => copyToClipboard(color, true)"/>
 
+      <button @click="dialog.openDialog()"
+        class="invisible sm:visible py-2 px-6 cursor-pointer rounded"
+        :style="{
+          background: selectedColor,
+          color: textColorForBackground(selectedColor)
+        }"
+      >
+        Play with themes
+      </button>
+
       <div class="flex flex-col gap-1 justify-center place-items-center">
         <div class="select">
 					<select class="select-text" v-model="selectedCulture" id="culture" :style="{background: `${p.palette.success}20`}">
@@ -218,6 +231,9 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
     <div class="flex flex-row justify-center gap-1">All charts are composed with <a href="https://vue-data-ui.graphieros.com/" class="underline" target="_blank" :style="{ color: isDarkMode ? selectedColor : '#1A1A1A' }">Vue Data UI</a></div>
   </footer>
   <ConfirmCopy />
+
+  <ThemeDialog ref="dialog">
+  </ThemeDialog>
 </template>
 
 

@@ -15,18 +15,19 @@ function makeSeries() {
   let arr = [];
   let initColor = store.mainColor;
 
-  for(let i = 0; i < 100; i += 1) {
+  for(let i = 0; i < 14; i += 1) {
     arr.push({
       from: i,
       to: i + 1,
-      color: shiftColorHue(initColor, i/500)
+      color: shiftColorHue(initColor, i/100),
+      name: '▼'
     })
   }
 
   return arr.reverse();
 }
 
-const gaugeValue = ref(66);
+const gaugeValue = ref(9.5);
 
 const dataset = computed(() => {
   return {
@@ -57,7 +58,8 @@ const config = computed(() => {
             show: false,
           },
           segmentNames: {
-            show: false,
+            show: true,
+            fontSize: 40
           },
           pointer: {
             type: "pointy",
