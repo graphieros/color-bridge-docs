@@ -109,11 +109,11 @@ const p = computed(() => {
                     <div :style="{ color: p.themes[theme].textColor, fontWeight: 'bold' }" class="absolute top-14 left-[24px] text-2xl leading-6">
                         This is <span :style="{ color: p.themes[theme].primary, fontWeight: 'bold'}">the Hero</span> section
                     </div>
-                    <svg class="absolute bottom-2 right-0 h-[50px] w-[90px] bg-transparent rotate-5" viewBox="0 0 100 60" :style="{
+                    <svg class="absolute bottom-3 right-6 h-[50px] w-[50px] bg-transparent rotate-5" viewBox="0 0 50 50" :style="{
                         filter: `drop-shadow(0 1px 1px ${p.themes[theme].primary})`
                     }">
                         <path 
-                            d="M 56 38 A 1 1 0 0 0 67 36 A 1 1 0 0 0 43 40 A 1 1 0 0 0 84 35 A 1 1 0 0 0 9 43"
+                            d="M 5 25 C 16 36 18.3333 38.3333 25 45 C 31.6667 31.6667 37 18 45 5"
                             fill="none"
                             :stroke="p.themes[theme].tertiary"
                             stroke-linecap="round"
