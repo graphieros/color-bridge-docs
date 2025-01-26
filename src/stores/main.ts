@@ -6,6 +6,8 @@ export const useMainStore = defineStore('main', () => {
     const isCopy = ref(false);
     const mainColor = ref('#FF3000');
     const mainPalette = ref({palette:{ sadness:'', error: '', neutrality: '', happiness: '', success: ''}})
+    const downloads = ref([]);
+    const stars = ref(0);
 
     function copy() {
         isCopy.value = true;
@@ -19,6 +21,8 @@ export const useMainStore = defineStore('main', () => {
         isCopy,
         copy,
         mainColor,
-        mainPalette
+        mainPalette,
+        downloads,
+        stars
     }
 })

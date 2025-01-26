@@ -11,6 +11,7 @@ import ColorBridgeGauge from "../components/ColorBridgeGauge.vue";
 import { VueUiIcon } from "vue-data-ui";
 import UtilityFunctions from "@/components/UtilityFunctions.vue";
 import ThemeDialog from "@/components/ThemeDialog.vue";
+import GithubStats from "@/components/GithubStats.vue";
 
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
@@ -224,7 +225,8 @@ const dialog = ref(null);
   />
 
   <footer class="w-full py-12 flex flex-col">
-    <div class="flex flex-row gap-2 place-items-center justify-center">
+    <GithubStats />
+    <div class="flex flex-row gap-2 place-items-center justify-center pt-6">
       <VueUiIcon name="copyLeft" :stroke="isDarkMode ? selectedColor : '#1A1A1A'"/>
       <span><span style="font-weight:bold">color-bridge</span> {{ new Date().getFullYear() }}</span>
     </div>

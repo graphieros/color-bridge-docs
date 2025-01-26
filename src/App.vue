@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { RouterView } from 'vue-router';
 import { useMainStore } from './stores/main';
-import { SunIcon, MoonIcon, BrandGithubFilledIcon } from "vue-tabler-icons";
+import { SunIcon, MoonIcon, BrandGithubFilledIcon, StarFilledIcon } from "vue-tabler-icons";
 import { VueUiIcon } from "vue-data-ui";
 import pack from "../package.json"
 
@@ -32,7 +32,6 @@ function changeTheme() {
     }
 }
 
-
 </script>
 
 <template>
@@ -45,14 +44,18 @@ function changeTheme() {
         </span>
         <code class="text-xs">v{{ pack.dependencies["color-bridge"].replace('^', '') }}</code>
       </div>
-      <div class="flex flex-row gap-6 place-items-center">
+      <div class="flex flex-row gap-6 place-items-center pr-6">
         <button @click="changeTheme" class="cursor-pointer">
           <SunIcon v-if="isDarkMode"/>
           <MoonIcon v-else/>
         </button>
-        <button class="cursor-pointer">
+        <button class="cursor-pointer relative">
           <a href="https://github.com/graphieros/color-bridge" target="_blank">
             <BrandGithubFilledIcon :style="{ color: isDarkMode ? store.mainColor : '#1A1A1A'}"/>
+            <div class="absolute -top-3 left-[100%] flex flex-row text-right place-items-center tabular-nums gap-0.5">
+              <StarFilledIcon :size="12" class="text-orange-300"/>
+              {{ store.stars }}
+            </div>
           </a>
         </button>
       </div>
