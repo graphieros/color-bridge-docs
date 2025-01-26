@@ -91,7 +91,8 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
       height: '500px',
       width: '500px',
       background: `radial-gradient(at top left,${store.mainPalette.palette.happiness}, ${store.mainPalette.palette.success}, transparent, transparent, transparent, transparent)`,
-      opacity: 0.1
+      opacity: 0.1,
+      pointerEvents: 'none',
     }"
   />
 
