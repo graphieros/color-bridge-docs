@@ -9,6 +9,7 @@ import colorBridge from "color-bridge";
 import { watch } from "vue";
 import ColorBridgeGauge from "../components/ColorBridgeGauge.vue";
 import { VueUiIcon } from "vue-data-ui";
+import UtilityFunctions from "@/components/UtilityFunctions.vue";
 
 const store = useMainStore();
 const isDarkMode = computed(() => store.isDarkMode);
@@ -196,7 +197,7 @@ const textColor = computed(() => isDarkMode.value ? '#CCCCCC' : '#1A1A1A')
 				</div>
       </div>
 
-      <!-- <UtilityFunctions/> -->
+      <UtilityFunctions />
 
     </div>
   </main>
