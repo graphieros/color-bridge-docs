@@ -1,5 +1,7 @@
 <script setup>
+import { useMainStore } from '@/stores/main';
 import { computed } from 'vue';
+import colorBridge from "color-bridge";
 
 const props = defineProps({
     content: {
@@ -12,8 +14,12 @@ const props = defineProps({
     },
 });
 
-
+const store = useMainStore();
 const highlightedCode = computed(() => highlightCode(props.content, props.language));
+
+const { utils } = colorBridge();
+
+const { lightenHexColor } = utils();
 
 function highlightCode(code, language) {
     if (language === 'html') {
@@ -68,6 +74,12 @@ function highlightCode(code, language) {
     return code;
 }
 
+// store.codeTheme
+
+const color_function = computed(() => store.codeTheme.caution);
+const color_keyword = computed(() => store.codeTheme.energy);
+const color_string = computed(() => lightenHexColor({ hexColor: store.codeTheme.luck, force: 0.2}));
+
 </script>
 
 <template>
@@ -91,7 +103,7 @@ function highlightCode(code, language) {
 
 /* Keyword Styles */
 ::v-deep(.code-keyword) {
-    color: #c678dd;
+    color: v-bind(color_keyword);
     /* Purple */
     font-weight: bold;
 }
@@ -105,13 +117,13 @@ function highlightCode(code, language) {
 
 /* Function names */
 ::v-deep(.code-function) {
-    color: #f8f388;
+    color: v-bind(color_function);
     /* Light Blue */
 }
 
 /* Strings */
 ::v-deep(.code-string) {
-    color: #98c379;
+    color: v-bind(color_string);
     /* Green */
 }
 

@@ -1,5 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+// @ts-ignore
+import colorBridge from "color-bridge";
 
 export const useMainStore = defineStore('main', () => {
     const isDarkMode = ref(true);
@@ -8,6 +10,13 @@ export const useMainStore = defineStore('main', () => {
     const mainPalette = ref({palette:{ sadness:'', error: '', neutrality: '', happiness: '', success: ''}})
     const downloads = ref([]);
     const stars = ref(0);
+    const culture = ref('chinese');
+
+    const codeTheme = computed(() => {
+        const { bridge } = colorBridge();
+        const { palette } = bridge({ culture: culture.value });
+        return palette
+    })
 
     function copy() {
         isCopy.value = true;
@@ -23,6 +32,8 @@ export const useMainStore = defineStore('main', () => {
         mainColor,
         mainPalette,
         downloads,
-        stars
+        stars,
+        culture,
+        codeTheme
     }
 })

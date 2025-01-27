@@ -43,7 +43,7 @@ const installationCode = computed(() => {
   return `import colorBridge from "color-bridge";
 
 const { bridge, utils } = colorBridge();
-const { palette, hues, themes } = bridge({culture: '${selectedCulture.value}'});
+const { palette, hues, themes } = bridge({culture: "${selectedCulture.value}"});
 const {
   createHues,
   createShiftedHues,
@@ -78,7 +78,8 @@ const p = computed(() => {
 
 watch(() => selectedCulture.value, (c) => {
   store.mainColor = p.value.palette.success;
-  store.mainPalette = p.value
+  store.mainPalette = p.value;
+  store.culture = c;
 }, { immediate: true})
 
 const selectedColor = computed(() => store.mainColor);

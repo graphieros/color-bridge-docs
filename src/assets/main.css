@@ -40,11 +40,11 @@ html.dark h1 {
 }
 
 html .code-parser {
-  background: #3A3A3A;
+  background: #2A2A2A;
 }
 
 html.dark .code-parser {
-  background: #2A2A2A;
+  background: #1f1f1f;
 }
 
 html h2 {
