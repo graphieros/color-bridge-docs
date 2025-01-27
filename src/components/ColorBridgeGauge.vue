@@ -58,8 +58,8 @@ const config = computed(() => {
             show: false,
           },
           segmentNames: {
-            show: true,
-            fontSize: 40
+            show: false,
+            fontSize: 20
           },
           pointer: {
             type: "pointy",
