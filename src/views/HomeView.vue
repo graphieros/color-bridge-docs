@@ -46,8 +46,10 @@ const { bridge, utils } = colorBridge();
 const { palette, hues, themes } = bridge({culture: '${selectedCulture.value}'});
 const {
   createHues,
+  createShiftedHues,
   darkenHexColor,
   lightenHexColor,
+  shiftHue,
   textColorForBackground
 } = utils();
 `

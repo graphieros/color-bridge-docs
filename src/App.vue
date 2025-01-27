@@ -54,7 +54,9 @@ function changeTheme() {
             <BrandGithubFilledIcon :style="{ color: isDarkMode ? store.mainColor : '#1A1A1A'}"/>
             <div class="absolute -top-3 left-[100%] flex flex-row text-right place-items-center tabular-nums gap-0.5">
               <StarFilledIcon :size="12" class="text-orange-300"/>
-              {{ store.stars }}
+              <span v-if="store.stars">
+                {{ store.stars }}
+              </span>
             </div>
           </a>
         </button>

@@ -13,7 +13,9 @@ const { utils } = colorBridge();
 const {
     textColorForBackground,
     createHues,
+    createShiftedHues,
     lightenHexColor,
+    shiftHue,
     darkenHexColor
 } = utils();
 
@@ -94,8 +96,10 @@ const installationCode = computed(() => {
 const { utils } = colorBridge();
 const {
   createHues,
+  createShiftedHues,
   darkenHexColor,
   lightenHexColor,
+  shiftHue,
   textColorForBackground
 } = utils();
 `
@@ -106,13 +110,32 @@ const selectedColor = ref(store.mainColor);
 
 const force_light = ref(0.2);
 const force_dark = ref(0.2);
+const shift_step = ref(0.018);
+const shift_range = ref(0.3);
+const force_hue = ref(0.04);
 
 const selectedHues = computed(() => {
     return createHues({ hexColor: selectedColor.value });
 })
 
+const selectedShiftedHues = computed(() => {
+    return createShiftedHues({
+        hexColor: selectedColor.value,
+        step: shift_step.value,
+        range: shift_range.value
+    })
+})
+
 const code_createHues = computed(() => {
     return `const myHues = createHues({ hexColor: "${selectedColor.value}" });`
+});
+
+const code_createShiftedHues = computed(() => {
+    return `const myHues = createShiftedHues({ 
+        hexColor: "${selectedColor.value}", 
+        step: ${shift_step.value}, 
+        range: ${shift_range.value} 
+    });`
 });
 
 const code_textColorForBackground = computed(() => {
@@ -125,6 +148,13 @@ const code_lightenHexColor = computed(() => {
 
 const code_darkenHexColor = computed(() => {
     return `const darkened = darkenHexColor("${selectedColor.value}");`
+})
+
+const code_shiftedHexColor = computed(() => {
+    return `const shifted = shiftHue({
+        hexColor: "${selectedColor.value}",
+        force: ${force_hue.value}
+    });`
 })
 
 </script>
@@ -167,7 +197,41 @@ const code_darkenHexColor = computed(() => {
                 <div class="h-[40px] w-full" v-for="c in selectedHues" :style="{ background: c }" />
             </div>
             <code class="text-xs">
-                    {{ selectedHues }}
+                {{ selectedHues }}
+            </code>
+        </div>
+
+        <div class="w-full p-4  bg-[#FFFFFF10] rounded" style="margin: 1rem 0">
+            <h3 class="flex flew-row gap-2 place-items-center text-md">
+                <VueUiIcon name="func" :stroke="isDarkMode ? store.mainPalette.palette.success : '#1A1A1A'"
+                    :size="16" /><code>createShiftedHues</code>
+            </h3>
+
+            <div class="flex flew-row gap-2 place-items-center" style="margin: 1rem 0">
+                <div class="flex flex-col">
+                    <label for="hue_select">Select color:</label>
+                    <input id="hue_select" type="color" v-model="selectedColor" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="shift_range">Select range:</label>
+                    <input type="range" id="shift_range" v-model="shift_range" :min="0.1" :max="0.5" :step="0.01" :style="{
+                            accentColor: store.mainColor
+                        }"/>
+                </div>
+            </div>
+            <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
+                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_createShiftedHues, true)">
+                    <CopyIcon :style="{ color: store.mainColor }" />
+                </button>
+                <CodeParser :content="code_createShiftedHues" language="javascript" />
+            </div>
+
+            <div style="margin-top: 1rem">Result:</div>
+            <div class="grid grid-cols-17">
+                <div class="h-[40px] w-full" v-for="c in selectedShiftedHues" :style="{ background: c }" />
+            </div>
+            <code class="text-xs">
+                    {{ selectedShiftedHues }}
                 </code>
         </div>
 
@@ -276,6 +340,44 @@ const code_darkenHexColor = computed(() => {
             }">
                 <code>
                     {{ darkenHexColor({ hexColor: selectedColor, force: force_dark}) }}
+                </code>
+            </div>
+        </div>
+
+        <div class="w-full p-4  bg-[#FFFFFF10] rounded" style="margin: 1rem 0">
+            <h3 class="flex flew-row gap-2 place-items-center text-md">
+                <VueUiIcon name="func" :stroke="isDarkMode ? store.mainPalette.palette.success : '#1A1A1A'"
+                    :size="16" /><code>shiftHue</code>
+            </h3>
+
+            <div class="flex flex-row gap-4">
+                <div class="flex flex-col" style="margin: 1rem 0">
+                    <label for="hue_select">Select color:</label>
+                    <input id="hue_select" type="color" v-model="selectedColor" />
+                </div>
+                <div class="flex flex-col" style="margin: 1rem 0">
+                    <label for="force_hue">Force:</label>
+                    <div class="flex flew-row place-items-center gap-2">
+                        <input id="force_hue" type="number" min="0" max="1" step="0.001" v-model="force_hue" :style="{
+                            accentColor: store.mainColor
+                        }" />{{ force_hue }}
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
+                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_shiftedHexColor, true)">
+                    <CopyIcon :style="{ color: store.mainColor }" />
+                </button>
+                <CodeParser :content="code_shiftedHexColor" language="javascript" />
+            </div>
+
+            <div style="margin-top: 1rem">Result:</div>
+            <div class="w-full text-[36px] text-center" :style="{
+                background: shiftHue({ hexColor: selectedColor, force: force_hue}),
+                color: textColorForBackground(shiftHue({ hexColor: selectedColor, force: force_hue}))
+            }">
+                <code>
+                    {{ shiftHue({ hexColor: selectedColor, force: force_hue}) }}
                 </code>
             </div>
         </div>
