@@ -169,9 +169,6 @@ const code_shiftedHexColor = computed(() => {
         </h2>
 
         <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-            <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(installationCode, true)">
-                <CopyIcon :style="{ color: store.mainColor }" />
-            </button>
             <CodeParser :content="installationCode" language="javascript" />
         </div>
 
@@ -186,9 +183,6 @@ const code_shiftedHexColor = computed(() => {
                 <input id="hue_select" type="color" v-model="selectedColor" />
             </div>
             <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_createHues, true)">
-                    <CopyIcon :style="{ color: store.mainColor }" />
-                </button>
                 <CodeParser :content="code_createHues" language="javascript" />
             </div>
 
@@ -220,9 +214,6 @@ const code_shiftedHexColor = computed(() => {
                 </div>
             </div>
             <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_createShiftedHues, true)">
-                    <CopyIcon :style="{ color: store.mainColor }" />
-                </button>
                 <CodeParser :content="code_createShiftedHues" language="javascript" />
             </div>
 
@@ -246,9 +237,6 @@ const code_shiftedHexColor = computed(() => {
                 <input id="hue_select" type="color" v-model="selectedColor" />
             </div>
             <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_textColorForBackground, true)">
-                    <CopyIcon :style="{ color: store.mainColor }" />
-                </button>
                 <CodeParser :content="code_textColorForBackground" language="javascript" />
             </div>
 
@@ -289,9 +277,6 @@ const code_shiftedHexColor = computed(() => {
                 </div>
             </div>
             <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_lightenHexColor, true)">
-                    <CopyIcon :style="{ color: store.mainColor }" />
-                </button>
                 <CodeParser :content="code_lightenHexColor" language="javascript" />
             </div>
 
@@ -327,9 +312,6 @@ const code_shiftedHexColor = computed(() => {
                 </div>
             </div>
             <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_darkenHexColor, true)">
-                    <CopyIcon :style="{ color: store.mainColor }" />
-                </button>
                 <CodeParser :content="code_darkenHexColor" language="javascript" />
             </div>
 
@@ -365,9 +347,6 @@ const code_shiftedHexColor = computed(() => {
                 </div>
             </div>
             <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]" style="margin: 0 auto">
-                <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(code_shiftedHexColor, true)">
-                    <CopyIcon :style="{ color: store.mainColor }" />
-                </button>
                 <CodeParser :content="code_shiftedHexColor" language="javascript" />
             </div>
 

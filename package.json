@@ -19,6 +19,7 @@
     "vue": "^3.5.13",
     "vue-data-ui": "^2.4.88",
     "vue-data-ui-cli": "^1.0.36",
+    "vue-hi-code": "^1.0.4",
     "vue-router": "^4.5.0",
     "vue-tabler-icons": "^2.21.0"
   },
@@ -28,10 +29,10 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "npm-run-all2": "^7.0.2",
+    "ssh2": "^1.16.0",
     "typescript": "~5.7.3",
     "vite": "^6.0.11",
     "vite-plugin-vue-devtools": "^7.7.0",
-    "vue-tsc": "^2.2.0",
-    "ssh2": "^1.16.0"
+    "vue-tsc": "^2.2.0"
   }
 }

@@ -186,9 +186,6 @@ const dialog = ref(null);
       </div>
 
       <div class="mt-12 code-parser p-5 rounded relative w-full max-w-[650px]">
-        <button class="cursor-pointer absolute top-2 right-2" @click="copyToClipboard(installationCode, true)">
-          <CopyIcon :style="{ color: selectedColor }"/>
-        </button>
         <CodeParser :content="installationCode" language="javascript"/>
       </div>
       
