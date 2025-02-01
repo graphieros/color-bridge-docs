@@ -38,7 +38,7 @@ function changeTheme() {
   <header class="sticky top-0 left-0 py-2 card w-full flex justify-center shadow px-5 z-100">
     <div class="w-full max-w-[1200px] flex flew-row place-items-center justify-between">
       <div class="text-2xl flex flex-row place-items-center gap-2">
-        <VueUiIcon name="moodLaughing":stroke="store.mainColor" :size="24"/>
+        <VueUiIcon name="chartGauge":stroke="store.mainColor" :size="24"/>
         <span style="font-weight: bold">
           Color Bridge
         </span>
